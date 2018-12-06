@@ -1,4 +1,4 @@
-public abstract class CustomProcess implements java.lang.Comparable {
+public class CustomProcess implements java.lang.Comparable<CustomProcess> {
 
   //TODO: Comment this class
   private static int nextProcessId = 1; // stores the id to be assigned to the next process
@@ -30,18 +30,27 @@ public abstract class CustomProcess implements java.lang.Comparable {
   public int compareTo(CustomProcess other) {
     // TODO IMplement this method
     
-    if(other.getBurstTime() > this.burstTime)
-      return 1;
-      else if (other.getBurstTime() < this.burstTime)
-        return -1;
+    
+    if(this.burstTime < other.getBurstTime()  )
+      //p1 is higher priority/smaller
+      return -1;
+      else if (this.burstTime > other.getBurstTime())
+        //p2 is higher priority/smaller
+        return 1;
       else if(other.getBurstTime() == this.burstTime) {
         if(other.getProcessId() > this.PROCESS_ID)
-          return 1;
+          //p1 is higher priority/smaller
+          return -1;
           else if (other.getProcessId() < this.PROCESS_ID)
-            return -1;
-          else return 0;    //if comes to this, it is the same process object
+          //p2 is higher priority/smaller
+            return 1;
+          else if ( other.getProcessId() == this.PROCESS_ID) return 0;    //if comes to this, it is the same process object
       }
         //will never reach
+    //TODO: remove this err line
+    System.err.println("Should never reach this in Custom process. Check");
         return 0;
   }
+
+
 }
