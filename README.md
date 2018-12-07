@@ -6,7 +6,7 @@ Author: **[Ajmain Naqib](mailto:naqib@wisc.edu)**
 
 Course: CS300, Fall 2018    Lecturer's Name: Gary Dahl
 
-Time spent: **  ** hours spent in total
+Time spent: ** 6 ** hours spent in total
 
 ## Project Introduction
 Your computer performs multiple processes, ranging from mundane stuff like disk checkup to more important matters such as installing Eclipse. The process scheduler is an important component of the operating system that is responsible for deciding which process will run next. In this assignment, we are going to develop a simple process scheduler to schedule processes that are ready to be run. This scheduler consists of only one processor. This means that only one process can be executed at a time. Our scheduler will run on a heap-based priority queue, and will operate conforming to the SJF scheduling policy. This means that ready processes with the shortest burst time have the highest priority to execute first. 
