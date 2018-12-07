@@ -1,6 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.ArrayDeque;
-
 //////////////////// ALL ASSIGNMENTS INCLUDE THIS SECTION /////////////////////
 //
 // Title: SJF PROCESS SCHEDULER
@@ -42,6 +39,9 @@ import java.util.ArrayDeque;
  */
 public class ProcessSchedulerTests {
 
+  /**
+   * Main method for tests 
+   */
   public static void main(String[] args) {
 
     int test = 4;
@@ -74,7 +74,7 @@ public class ProcessSchedulerTests {
   }
 
   /**
-   * This method runs all bagder class tests.
+   * This method ensures CustomProcess method works properly
    * 
    * @return true if test passed, false if failed
    */
@@ -99,7 +99,11 @@ public class ProcessSchedulerTests {
 
   }
 
-
+  /**
+   * This method ensures enqueueCustomProcessQueue method works properly
+   * 
+   * @return true if test passed, false if failed
+   */
   public static boolean testEnqueueCustomProcessQueue() {
 
     CustomProcessQueue testQueue = new CustomProcessQueue();
@@ -146,6 +150,11 @@ public class ProcessSchedulerTests {
   } // checks the correctness of the enqueue
     // operation implemented in the CustomProcessQueue class
 
+  /**
+   * This method ensures dequeueCustomProcessQueue method works properly
+   * 
+   * @return true if test passed, false if failed
+   */
   public static boolean testDequeueCustomProcessQueue() {
     CustomProcessQueue testQueue = new CustomProcessQueue();
 
@@ -179,15 +188,21 @@ public class ProcessSchedulerTests {
   } // checks the correctness of the dequeue
     // operation implemented in the CustomProcessQueue class
 
+  
+  /**
+   * This method ensures doubleArraySize method works properly
+   * 
+   * @return true if test passed, false if failed
+   */
   public static boolean testDoubleArraySize() {
     CustomProcessQueue testQueue = new CustomProcessQueue();
 
     boolean testPassed = true;
-    for(int i=1; i< 42; i++) {
+    for(int i=1; i< 42; i++) { // adds a lot of processes
       testQueue.enqueue(new CustomProcess(i));
     }
     
-    for(int i=1; i< 42; i++) {
+    for(int i=1; i< 42; i++) { // // adds more processes 
       testQueue.enqueue(new CustomProcess(i));
     }
     
@@ -200,7 +215,6 @@ public class ProcessSchedulerTests {
 //
     if (testQueue.size() > 90)
       testPassed = false;
-
 
 
     return testPassed;

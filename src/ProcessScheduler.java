@@ -2,11 +2,56 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+//////////////////// ALL ASSIGNMENTS INCLUDE THIS SECTION /////////////////////
+//
+// Title: SJF PROCESS SCHEDULER
+// Course: CS300, Fall 2018
+//
+// Author: Ajmain Naqib
+// Email: naqib@wisc.edu
+// Lecturer's Name: Gary Dahl
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ///////////////////
+//
+// Partner Name:
+// Partner Email:
+// Partner Lecturer's Name:
+//
+// VERIFY THE FOLLOWING BY PLACING AN X NEXT TO EACH TRUE STATEMENT:
+// __ Write-up states that pair programming is allowed for this assignment.
+// __ We have both read and understand the course Pair Programming Policy.
+// __ We have registered our team prior to the team registration deadline.
+//
+///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
+//
+// Students who get help from sources other than their partner must fully
+// acknowledge and credit those sources of help here. Instructors and TAs do
+// not need to be credited here, but tutors, friends, relatives, room mates,
+// strangers, and others do. If you received no outside help from either type
+// of source, then please explicitly indicate NONE.
+//
+// Persons: None
+// Online Sources:
+/////////////////////////////// 80 COLUMNS WIDE ///////////////////////////////
+
+
+/**
+ * ProcessScheduler Class for SJF PROCESS SCHEDULER which is also the driver class of the
+ * application
+ * 
+ * @author: Ajmain Naqib
+ * @email: naqib@wisc.edu
+ */
+
 public class ProcessScheduler {
   private int currentTime; // stores the current time after the last run
   private int numProcessesRun; // stores the number of processes run so far
   private CustomProcessQueue queue; // this processing unit's custom process queue
 
+
+  /**
+   * Creates a new ProcessScheduler object
+   */
   public ProcessScheduler() {
     this.currentTime = 0;
     this.numProcessesRun = 0;
@@ -14,16 +59,31 @@ public class ProcessScheduler {
     queue = new CustomProcessQueue();
   }
 
+
+  /**
+   * Get the number of processes ran so far
+   * 
+   * @return the number of processes ran so far
+   */
   public int getNumProcessesRun() {
     return this.numProcessesRun;
   }
 
+
+  /**
+   * Get the current time after the last run
+   * 
+   * @return the current time after the last run
+   */
   public int getCurrentTime() {
     return this.currentTime;
   }
 
-
-  // The scheduleProcess() method enqueue the given process in the CustomProcessQueue queue.
+  /**
+   * Enqueues the given process in the CustomProcessQueue queue.
+   * 
+   * @param process
+   */
   public void scheduleProcess(CustomProcess process) {
 
     queue.enqueue(process);
@@ -32,26 +92,27 @@ public class ProcessScheduler {
       + process.getBurstTime());
   }
 
-  // When it is called, the run() method starts running the ready processes already scheduled in the
-  // queue according to the SJF scheduling policy. This method returns when all the scheduled
-  // processes are run and the queue is empty. It returns a String that represents the log of one run
-  // operation. The format of this log is as follows.
+  /**
+   * Starts running the ready processes already scheduled in the queue according to the SJF scheduling
+   * policy. This method returns when all the scheduled processes are run and the queue is empty. It
+   * returns a String that represents the log of one run operation.
+   * 
+   * @return log of the completed operation
+   */
   public String run() {
-
-
 
     String log = "";
 
     int numofprocess = queue.size();
 
-    if (queue.size() > 1)
+    if (queue.size() > 1) // Log based on number of processes
       log += "Starting " + numofprocess + " processes\n\n";
     else
       log += "Starting " + numofprocess + " process\n\n";
 
 
+    // "Run" each process and remove them from heap while logging
     for (int x = 0; x < numofprocess; x++) {
-
       CustomProcess currProcess = queue.dequeue();
 
       log += "Time " + (this.currentTime) + " : Process ID " + currProcess.getProcessId()
@@ -71,23 +132,26 @@ public class ProcessScheduler {
 
   }
 
-
+  /**
+   * Driver method of the class
+   * 
+   */
 
   public static void main(String[] args) {
 
     Scanner scnr;
 
-    
- //   // test inputs from file
-//    File file = new File("C:/Temp/JAVA/SJF Process Scheduler/zybooksTest.txt");
-//    try {
-//      scnr = new Scanner(file);
-//    } catch (FileNotFoundException e1) {
-//      // TODO Auto-generated catch block
-//      e1.printStackTrace();
-//      scnr = new Scanner(System.in); // initialize scanner object
-//    }
-    
+
+    // // test inputs from file
+    // File file = new File("C:/Temp/JAVA/SJF Process Scheduler/zybooksTest.txt");
+    // try {
+    // scnr = new Scanner(file);
+    // } catch (FileNotFoundException e1) {
+    //
+    // e1.printStackTrace();
+    // scnr = new Scanner(System.in); // initialize scanner object
+    // }
+
     scnr = new Scanner(System.in); // initialize scanner object
 
 
@@ -138,17 +202,19 @@ public class ProcessScheduler {
           }
 
           switch (command) {
-            case "r":{
+            case "r": {
 
               log = scheduler.run();
-              break;}
+              break;
+            }
 
-            case "run":{
+            case "run": {
 
               log = scheduler.run();
-              break;}
+              break;
+            }
 
-            case "schedule":{
+            case "schedule": {
               if (userInputs.length != 2 || burstTime < 1) {
                 System.out.println("WARNING: burst time MUST be greater than 0!"); // warning message
                 run = false;
@@ -158,9 +224,10 @@ public class ProcessScheduler {
                 newProcess = new CustomProcess(burstTime);
                 scheduler.scheduleProcess(newProcess);
               }
-              break;}
+              break;
+            }
 
-            case "s":{
+            case "s": {
               if (userInputs.length != 2 || burstTime < 1) {
                 System.out.println("WARNING: burst time MUST be greater than 0!"); // warning message
                 run = false;
@@ -170,14 +237,14 @@ public class ProcessScheduler {
                 newProcess = new CustomProcess(burstTime);
                 scheduler.scheduleProcess(newProcess);
               }
-              break;}
+              break;
+            }
 
-            default:{
+            default: {
               System.out.print("WARNING: Please enter a valid command!\n");
-              break;}
+              break;
+            }
           }
-
-
           System.out.print(log);
           log = "";
 
@@ -185,15 +252,10 @@ public class ProcessScheduler {
           System.out.print("WARNING: burst time MUST be an integer!"); // warning message
           run = false;
         }
-
-
       }
-
-
       System.out.println();
-
     }
-scnr.close();
+    scnr.close(); // Because I wouldn't want someone to leave me turned on.
   }
 
 }
