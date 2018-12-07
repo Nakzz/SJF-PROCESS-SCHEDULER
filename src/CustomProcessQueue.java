@@ -86,7 +86,7 @@ public class CustomProcessQueue implements WaitingQueueADT<CustomProcess> {
     }
 
     heap[size()] = null;
-    this.size--;
+
 
   }
 
@@ -109,7 +109,9 @@ public class CustomProcessQueue implements WaitingQueueADT<CustomProcess> {
 
       // TODO: remove and shift all one down
       minHeapPercolateDown(1);
-
+      
+      this.size--;
+      
       return removeProcess; // Since highest priority is at 1
     } else
       return null;
