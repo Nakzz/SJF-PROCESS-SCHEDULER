@@ -6,8 +6,6 @@ public class CustomProcessQueue implements WaitingQueueADT<CustomProcess> {
   private CustomProcess[] heap; // array-based min heap storing the data. This is an oversize array
   private int size; // number of CustomProcesses present in this CustomProcessQueue
 
-  // You are NOT allowed to import java.util.ArrayList class or any other ArrayList-based
-  // implementation.
   // The heap MUST array-based MIN-heap. It will be implemented such that the ROOT node is ALWAYS the
   // entry at index 1 in the array. This means that index 0 should be unused and the process having
   // the highest priority is always stored at index 1 of your array heap.
@@ -31,8 +29,8 @@ public class CustomProcessQueue implements WaitingQueueADT<CustomProcess> {
   // Your CustomProcessQueue class contains ONLY ONE no-argument constructor that creates an empty
   // CustomProcessQueue.
   public CustomProcessQueue() {
-    heap = new CustomProcess[INITIAL_CAPACITY];
-    int size = 0; // since 0 index should be kept empty
+    this.heap = new CustomProcess[INITIAL_CAPACITY];
+    this.size = 0; // since 0 index should be kept empty
   }
 
 
@@ -43,7 +41,16 @@ public class CustomProcessQueue implements WaitingQueueADT<CustomProcess> {
 
     CustomProcess newProcess;
     CustomProcess nextProcess;
+    
+    if(index == this.heap.length) {
+//      System.out.println(" Doubling Size. current lenght: " + this.heap.length);
+      
+      doubleArraySize();
+      
 
+//      System.out.println(" Doubleed Size. current lenght: " + this.heap.length);
+    }
+    
     newProcess = heap[0];
     nextProcess = heap[index];
 
@@ -88,6 +95,17 @@ public class CustomProcessQueue implements WaitingQueueADT<CustomProcess> {
     heap[size()] = null;
 
 
+  }
+  
+  private void doubleArraySize() {
+    
+     CustomProcess[] newheap = new CustomProcess[this.heap.length * 2];
+     
+     for(int i=0; i< this.size; i++) {
+       newheap[i] = this.heap[i];
+     }
+    
+     this.heap = newheap;
   }
 
   // inserts a newObject in the priority queue

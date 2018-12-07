@@ -78,7 +78,7 @@ public class ProcessScheduler {
     Scanner scnr;
 
     
-    // test inputs from file
+ //   // test inputs from file
 //    File file = new File("C:/Temp/JAVA/SJF Process Scheduler/zybooksTest.txt");
 //    try {
 //      scnr = new Scanner(file);

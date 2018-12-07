@@ -44,7 +44,7 @@ public class ProcessSchedulerTests {
 
   public static void main(String[] args) {
 
-    int test = 3;
+    int test = 4;
 
     if (CustomProcessTest())
       test--;
@@ -60,6 +60,11 @@ public class ProcessSchedulerTests {
       test--;
     else
       System.out.println("testDequeueCustomProcessQueue() failed!");
+
+    if (testDoubleArraySize())
+      test--;
+    else
+      System.out.println("testDoubleArraySize() failed!");
 
 
 
@@ -174,6 +179,32 @@ public class ProcessSchedulerTests {
   } // checks the correctness of the dequeue
     // operation implemented in the CustomProcessQueue class
 
+  public static boolean testDoubleArraySize() {
+    CustomProcessQueue testQueue = new CustomProcessQueue();
+
+    boolean testPassed = true;
+    for(int i=1; i< 42; i++) {
+      testQueue.enqueue(new CustomProcess(i));
+    }
+    
+    for(int x=1; x<= testQueue.size(); x++) {
+    System.out.println("ProcessID: "+testQueue.processAtIndex(x).getProcessId() + " burst Time:"
+    +testQueue.processAtIndex(x).getBurstTime());
+    }
+
+    System.out.println("testQueue.size(): "+testQueue.size());
+
+//    if (testQueue.size() != 1)
+//      testPassed = false;
+//
+//    if (testQueue.size() != 0)
+//      testPassed = false;
+
+
+
+    return testPassed;
+  } 
+  
   
 
 }
